@@ -24,17 +24,15 @@ class Register extends React.Component{
 
     componentDidMount(){
 
-        if(this.state.deviceId !== undefined || this.state.deviceId !== null){
+        if(this.state.deviceId){
             this.verifyLogin();
         }
     }
 
     verifyLogin(){
-        console.log(this.state.deviceId);
         axios.get(`http://localhost:3001/users/verify/${this.state.deviceId}`)
             .then((response) => {
-                console.log(response.data);
-                if(response.data !== false){
+                if(response.data === true){
                     this.setState({
                         isRegistered: true
                     })

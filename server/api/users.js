@@ -11,7 +11,7 @@ router.get("/verify/:deviceId", (req,res) => {
         if(err){
             res.status(404).send(false);
         }
-        res.status(200).send(match);
+        res.status(200).send(true);
     })  
 })
 
