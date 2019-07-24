@@ -7,6 +7,8 @@ const bodyParser = require("body-parser");
 const compression = require("compression");
 const helmet = require("helmet");
 const port = process.env.PORT || 3001;
+const createError = require('http-errors');
+
 
 app.set('port', port);
 app.options('/', cors());
@@ -48,10 +50,11 @@ app.use(cors(corsOptions));
 
 //api routes
 app.use('/questions', require("./api/questions.js"));
-
+app.use('/users', require("./api/users.js"));
 
 //models
-require("./api/questions");
+require("./models/questions");
+require("./models/users");
 
 
 // catch 404 erros

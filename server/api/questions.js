@@ -5,7 +5,7 @@ const Questions = require("../models/questions");
 
 router.get("/", (req, res) => {
     
-    let number = parseInt(Math.random() * Math.floor(12));
+    let number = parseInt(Math.random() * Math.floor(45));
     console.log(number);
 
     Questions.findOne({questionIndex: number}, (err, match) => {

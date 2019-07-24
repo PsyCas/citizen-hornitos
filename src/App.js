@@ -24,7 +24,7 @@ class App extends React.Component{
     axios.get("http://localhost:3001/questions")
 
       .then((response) => {
-        if(response.data != false){
+        if(response.data !== false){
           this.setState({
             question: response.data,
             isFetchedQuestion: true
@@ -47,8 +47,8 @@ class App extends React.Component{
             <div>
               <div>{this.state.question.questionTopic}</div>
               <div>{this.state.question.question}</div>
-              <div>{this.state.question.answers.map((element) => {
-                return(<div>{element}</div>)
+              <div>{this.state.question.answers.map((element, key) => {
+                return(<div key = {key}>{element}</div>)
               })}</div>
             </div>
           }
