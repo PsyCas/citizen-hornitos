@@ -9,7 +9,8 @@ class App extends React.Component{
 
     this.state = {
       question: null,
-      isFetchedQuestion: false
+      isFetchedQuestion: false,
+      decieId: localStorage.getItem("device-id")
     }
 
     this.fetchQuestion.bind(this);
@@ -21,7 +22,7 @@ class App extends React.Component{
 
   fetchQuestion(){
 
-    axios.get("https://citizen-hornitos.herokuapp.com/questions")
+    axios.get(`https://citizen-hornitos.herokuapp.com/questions/${this.state.deviceId}`)
 
       .then((response) => {
         if(response.data !== false){

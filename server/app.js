@@ -44,6 +44,9 @@ console.log("MongoDB connection establised to development server")
 
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));   
 
+//api routes for different routes
+app.use('/questions', require("./api/questions.js"));
+app.use('/users', require("./api/users.js"));
 
 // root of the server is opened up for cors
 app.get('/', cors(corsOptions), function (req, res, next) {
@@ -57,10 +60,6 @@ app.get('*', (req, res) => {
   });
 
 app.use(cors(corsOptions));
-
-//api routes
-app.use('/questions', require("./api/questions.js"));
-app.use('/users', require("./api/users.js"));
 
 //models
 require("./models/questions");
