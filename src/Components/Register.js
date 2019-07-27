@@ -30,7 +30,7 @@ class Register extends React.Component{
     }
 
     verifyLogin(){
-        axios.get(`http://localhost:3001/users/verify/${this.state.deviceId}`)
+        axios.get(`https://citizen-hornitos.herokuapp.com/users/verify/${this.state.deviceId}`)
             .then((response) => {
                 if(response.data === true){
                     this.setState({
@@ -67,7 +67,7 @@ class Register extends React.Component{
 
     submitRegistration(){
 
-        axios.post("http://localhost:3001/users/validate", {username: this.state.username, email: this.state.email})
+        axios.post("https://citizen-hornitos.herokuapp.com/users/validate", {username: this.state.username, email: this.state.email})
             .then((response) => {
                 if(response.data.selected){
                     this.setState({

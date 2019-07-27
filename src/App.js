@@ -21,7 +21,7 @@ class App extends React.Component{
 
   fetchQuestion(){
 
-    axios.get("http://localhost:3001/questions")
+    axios.get("https://citizen-hornitos.herokuapp.com/questions")
 
       .then((response) => {
         if(response.data !== false){
