@@ -110,11 +110,13 @@ class Register extends React.Component{
                 </div> 
             );
         }
-        
+
         else{
-            <div>
-                <img alt = "" src={require("../images/spinner-1.svg")}/> 
-            </div>
+            return(
+                <div>
+                    <img alt = "" src={require("../images/spinner-1.svg")}/> 
+                </div>
+            );
         }
     }
 }
