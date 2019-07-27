@@ -13,6 +13,7 @@ class Register extends React.Component{
             username: localStorage.getItem("username"),
             email: localStorage.getItem("email"),
             isRegistered: false,
+            isFetchedVerification: false,
             deviceId: localStorage.getItem("device-id"),
         }
 
@@ -34,19 +35,22 @@ class Register extends React.Component{
             .then((response) => {
                 if(response.data === true){
                     this.setState({
-                        isRegistered: true
+                        isRegistered: true,
+                        isFetchedVerification: true
                     })
                 }
                 else{
                     this.setState({
-                        isRegistered: false
+                        isRegistered: false,
+                        isFetchedVerification: true
                     })
                 }
             })
             .catch((err) => {
                 console.log(err);
                 this.setState({
-                    isRegistered: false
+                    isRegistered: false,
+                    isFetchedVerification: true
                 })
             })
     }
@@ -87,13 +91,13 @@ class Register extends React.Component{
 
     render(){
         
-        if(this.state.isRegistered)
+        if(this.state.isRegistered && this.state.isFetchedVerification)
         {
             return(
                 <App username = {this.state.username} email = {this.state.username}/>
             );
         }
-        else{
+        else if (!this.state.isRegistered && this.state.isFetchedVerification){
             return(
                 <div>
                     <label>Choose username</label>
@@ -105,6 +109,11 @@ class Register extends React.Component{
                     <input type= "submit" value = "Submit" onClick = {this.submitRegistration}/>
                 </div> 
             );
+        }
+        else{
+            <div>
+                <img alt = "" src={require("../images/spinner-1.svg")}/> 
+            </div>
         }
     }
 }
