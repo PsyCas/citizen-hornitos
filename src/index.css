@@ -5,8 +5,15 @@
   font-style: normal;
 }
 
+html{
+  margin: 0;
+  height: 100%;
+}
+
 body {
   margin: 0;
+  height: 100%;
+
   font-family: "Knockout", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
@@ -21,4 +28,13 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+#root{
+  height: 100vh;
+  width: 100vw;
+}
+
+/* logic for smartphone screens */
+@media only screen and (max-width: 600px) {
 }
