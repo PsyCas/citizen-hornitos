@@ -109,13 +109,8 @@ class Register extends React.Component{
                         })
                     }
                 })
-                .catch((err, response) => {
+                .catch((err) => {
                     console.log(err);
-                    if(!response.data.selected){
-                        this.setState({
-                            isTakenUsername: true
-                        })
-                    }
                 })
         }
         else{
@@ -143,7 +138,6 @@ class Register extends React.Component{
 
                             {/* <label className = "label-layout">Enter your email</label> */}
                             <input placeholder = "Email" className = "form-layout" type="email" onChange = {this.handleEmail} required/>
-                            {console.log(this.state.email)}
                             {this.state.isError && !this.state.email && <div className = "error-layout"> Enter an email before submission </div>}
 
                             <input className = "submit-button-layout" type= "submit" value = "Submit" onClick = {this.submitRegistration}/>

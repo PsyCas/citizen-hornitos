@@ -26,7 +26,7 @@ router.post("/validate", (req, res) => {
 
     Users.findOne({username: req.body.username}, (err, match) => {
         if(match){
-            res.status(400).send({message: "Username already taken.", selected: false})
+            res.status(200).send({message: "Username already taken.", selected: false})
         }
 
         const User = new Users({
