@@ -48,14 +48,14 @@ db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 app.use('/questions', require("./api/questions.js"));
 app.use('/users', require("./api/users.js"));
 
-// root of the server is opened up for cors
-app.get('/', cors(corsOptions), function (req, res, next) {
-    res.json({msg: 'This is CORS-enabled for a whitelisted domain.'})
-})
+// // root of the server is opened up for cors
+// app.get('/', cors(corsOptions), function (req, res, next) {
+//     res.json({msg: 'This is CORS-enabled for a whitelisted domain.'})
+// })
 
 // The "catchall" handler: for any request that doesn't
 // match one above, send back React's index.html file.
-app.get('*', (req, res) => {
+app.get('*', cors(corsOptions), (req, res) => {
     res.sendFile(path.join(__dirname+'../build/index.html'));
   });
 
