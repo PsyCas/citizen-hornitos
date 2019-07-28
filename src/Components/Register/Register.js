@@ -36,6 +36,11 @@ class Register extends React.Component{
         if(this.state.deviceId){
             this.verifyLogin();
         }
+        else{
+            this.setState({
+                isFetchedVerification: true
+            })
+        }
     }
 
     verifyLogin(){
