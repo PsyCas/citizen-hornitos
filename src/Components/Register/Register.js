@@ -131,14 +131,17 @@ class Register extends React.Component{
                         <img src = {require("../../images/agave.jpg")} alt="" className = "agave-display-image"/> 
                         <div className = "main-container-signup">
                             <div className = "sign-up-form-header">Let's get started</div>
-                            {/* <label className = "label-layout">Choose your username</label> */}
-                            <input placeholder  = "Username" className = "form-layout" type="string" onChange={this.handleName} required/>
-                            {this.state.isError && !this.state.username && <div className = "error-layout"> Enter a username before submission </div>}
-                            {this.state.isTakenUsername && <div className="error-layout" id="taken-usernmae">This username is already taken.</div>}
-
-                            {/* <label className = "label-layout">Enter your email</label> */}
-                            <input placeholder = "Email" className = "form-layout" type="email" onChange = {this.handleEmail} required/>
-                            {this.state.isError && !this.state.email && <div className = "error-layout"> Enter an email before submission </div>}
+                            
+                            <div>
+                                <input placeholder  = "Username" className = "form-layout" type="string" onChange={this.handleName} required/>
+                                {this.state.isError && !this.state.username && <div className = "error-layout"> Enter a username before submission </div>}
+                                {this.state.isTakenUsername && <div className="error-layout" id="taken-usernmae">This username is already taken.</div>}
+                            </div>
+                            
+                            <div>
+                                <input placeholder = "Email" className = "form-layout" type="email" onChange = {this.handleEmail} required/>
+                                {this.state.isError && !this.state.email && <div className = "error-layout"> Enter an email before submission </div>}
+                            </div>
 
                             <input className = "submit-button-layout" type= "submit" value = "Submit" onClick = {this.submitRegistration}/>
                         </div>
