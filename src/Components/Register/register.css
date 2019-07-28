@@ -1,0 +1,197 @@
+/* signup page logic */
+.main-container-image-signup{
+
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: 100vw;
+
+    /* border: 1px solid red; */
+}
+
+.signup-image-container-card{
+
+    display: flex;
+    
+    align-items: center;
+    justify-content: center;
+
+    height: 100%;
+    width: 100%;
+
+
+    /* border: 1px solid black; */
+}
+
+.signup-flex-wrapper{
+    display: flex;
+    /* background: #b2b2b2; */
+    background: rgba(0, 0, 0, 0.6);
+    border-radius: 10px;
+
+    /* quick little attitude adjustment for the flexbox */
+    margin-top: -5rem; 
+
+    height: 70%;
+    width: 50%;
+
+    /* border: 1px solid yellow; */
+}
+
+.agave-display-image{
+    /* filter: brightness(50%); */
+    object-fit: cover;
+    height: 100%;
+    width: 50%;
+    border-radius: 10px 0 0 10px;
+}
+
+/* sign up form styles */
+.main-container-signup{
+    display: flex;
+    flex-direction: column;
+
+    height: 100%;
+    width: 100%;
+
+    padding: 3rem;
+
+
+    /* border: 1px solid purple; */
+}
+
+.sign-up-form-header{
+
+    font-size: 2.5vw;
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+    border-bottom: 0.5px solid rgba(255, 255, 255, 0.5);
+}
+
+.form-layout{
+
+    margin: 3rem 0;
+    height: 10%;
+
+    background: transparent;
+    border: none;
+    border-bottom: 0.5px solid rgba(255, 255, 255, 0.5);
+}
+
+.form-layout::placeholder{
+
+    font-size: 1.2vw;
+}
+
+.submit-button-layout{
+
+    margin-top: 3rem;
+
+    height: 5vh;
+    width: 7vw;
+
+    color: white;
+    font-size: 1.2vw;
+    font-family: "knockout";
+
+    border: none;
+    background: #00995B;
+    border-radius: 10px;
+}
+
+
+
+/* spinner logic */
+.main-container-loadingImage{
+    display: flex;
+    background: #00995B;
+    flex-direction: column;
+
+    height: 100vh;
+    width: 100vw;
+}
+
+.loading-image-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%; 
+}
+
+/* logic for smartphone screens */
+@media only screen and (max-width: 600px) {
+
+
+    /* signup page logic */
+    .main-container-image-signup{
+        background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("../../images/agave.jpg");
+        /* filter: brightness(80%); */
+        background-size: cover;
+    }
+
+    .signup-flex-wrapper{
+        display: flex;
+        /* background: #b2b2b2; */
+        background: rgba(0, 0, 0, 0.8);
+        border-radius: 10px;
+    
+        /* quick little attitude adjustment for the flexbox */
+        margin-top: -5rem; 
+    
+        height: 70%;
+        width: 50%;
+    
+        /* border: 1px solid yellow; */
+    }
+
+    .agave-display-image{
+        height: 0%;
+        width: 0%;
+    }
+    
+    /* sign up form styles */
+    .main-container-signup{
+        display: flex;
+        flex-direction: column;
+
+        height: 100%;
+        width: 100%;
+
+        padding: 3rem;
+
+
+        /* border: 1px solid purple; */
+    }
+
+    .sign-up-form-header{
+
+        font-size: 4vw;
+        padding-bottom: 0.5rem;
+        margin-bottom: 0rem;
+    }
+
+    .form-layout{
+
+        margin: 1rem 0;
+        height: 10%;
+
+        background: transparent;
+        border: none;
+        border-bottom: 0.5px solid rgba(255, 255, 255, 0.5);
+    }
+
+    .submit-button-layout{
+
+        margin-top: 2rem;
+
+        height: 5vh;
+        width: 4rem;
+
+        color: white;
+        font-size: 0.8rem;
+    }
+
+        
+
+}

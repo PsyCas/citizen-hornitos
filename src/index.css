@@ -1,10 +1,21 @@
+@font-face {
+  font-family: 'Knockout';
+  src: url('./fonts/Knockout-29JuniorLtweight.otf');
+  font-weight: normal;
+  font-style: normal;
+}
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+  font-family: "Knockout", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  background: #00995B;
+  color: #ffffff;
+  overflow: hidden;
 }
 
 code {

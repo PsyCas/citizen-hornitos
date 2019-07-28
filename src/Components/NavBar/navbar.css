@@ -1,0 +1,36 @@
+.menu-bar-main{
+    margin: 2rem 0 0 5rem;
+    display: flex;
+    width: 50%;
+    align-items: center;
+
+    /* border: 1px solid blue; */
+}
+
+.logo-container{
+    /* border: 1px solid red; */
+    width:20%;
+}
+
+.hornitos-navbar-logo{
+    height: 100%;
+    width: 100%;
+}
+
+.logo-header-title{
+    font-size: 3.5vw;
+    padding-left: 2rem;
+}
+
+@media only screen and (max-width: 600px) {
+
+    .menu-bar-main{
+        margin: 2rem 0 0 3rem;
+        display: flex;
+        width: 50%;
+        align-items: center;
+    
+        /* border: 1px solid blue; */
+    }
+    
+}
