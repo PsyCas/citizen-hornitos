@@ -20,6 +20,8 @@ class Register extends React.Component{
             isRegistered: false,
             isFetchedVerification: false,
             deviceId: localStorage.getItem("device-id"),
+            isError: false,
+            isTakenUsername: false
         }
 
         this.verifyLogin = this.verifyLogin.bind(this);
@@ -81,11 +83,48 @@ class Register extends React.Component{
             email: event.target.value
         });
     } 
+    
+    submitRegistration(){
+
+        if(this.state.username != null && this.state.email != null){
+
+            axios.post("https://citizen-hornitos.herokuapp.com/users/validate", 
+                        {   username: this.state.username, 
+                            email: this.state.email})
+                
+                    .then((response) => {
+                    if(response.data.selected){
+                        this.setState({
+                            isRegistered: true,
+                            deviceId: response.data.confirmationCode
+                        })
+
+                        localStorage.setItem("username", this.state.username);
+                        localStorage.setItem("email", this.state.email);
+                        localStorage.setItem("device-id", this.state.deviceId);
+                    }
+                    else if(!response.data.selected){
+                        this.setState({
+                            isTakenUsername: true
+                        })
+                    }
+                })
+                .catch((err) => {
+                    console.log(err);
+                })
+        }
+        else{
+            this.setState({
+                isError: true
+            })
+        }
+    }
 
     //render functions
     renderSignUp(){
         return(
             <div className = "main-container-image-signup">
+
                 <NavBar/>
                 <div className = "signup-image-container-card">
                     <div className = "signup-flex-wrapper">
@@ -94,9 +133,13 @@ class Register extends React.Component{
                             <div className = "sign-up-form-header">Let's get started</div>
                             {/* <label className = "label-layout">Choose your username</label> */}
                             <input placeholder  = "Username" className = "form-layout" type="string" onChange={this.handleName} required/>
-                        
+                            {this.state.isError && !this.state.username && <div className = "error-layout"> Enter a username before submission </div>}
+                            {this.state.isTakenUsername && <div className="error-layout" id="taken-usernmae">This username is already taken.</div>}
+
                             {/* <label className = "label-layout">Enter your email</label> */}
                             <input placeholder = "Email" className = "form-layout" type="email" onChange = {this.handleEmail} required/>
+                            {console.log(this.state.email)}
+                            {this.state.isError && !this.state.email && <div className = "error-layout"> Enter an email before submission </div>}
 
                             <input className = "submit-button-layout" type= "submit" value = "Submit" onClick = {this.submitRegistration}/>
                         </div>
@@ -106,25 +149,7 @@ class Register extends React.Component{
         )
     }
 
-    submitRegistration(){
-
-        axios.post("https://citizen-hornitos.herokuapp.com/users/validate", {username: this.state.username, email: this.state.email})
-            .then((response) => {
-                if(response.data.selected){
-                    this.setState({
-                        isRegistered: true,
-                        deviceId: response.data.confirmationCode
-                    })
-
-                    localStorage.setItem("username", this.state.username);
-                    localStorage.setItem("email", this.state.email);
-                    localStorage.setItem("device-id", this.state.deviceId);
-                }
-            })
-            .catch((err) => {
-                console.log(err);
-            })
-    }
+    
 
     render(){
         
