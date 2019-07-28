@@ -72,6 +72,8 @@
 
     margin: 3rem 0;
     height: 10%;
+    color: white;
+    outline: none;
 
     background: transparent;
     border: none;
@@ -194,7 +196,9 @@
 
         margin: 1.5rem 0;
         height: 10%;
-
+        color: white;
+        outline: none;
+        
         background: transparent;
         border: none;
         border-bottom: 0.5px solid rgba(255, 255, 255, 0.5);
