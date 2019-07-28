@@ -26,7 +26,7 @@ router.post("/validate", (req, res) => {
 
     Users.findOne({username: req.body.username}, (err, match) => {
         if(match){
-            res.status(200).send({message: "Username already taken.", selected: false})
+            res.send({message: "Username already taken.", selected: false})
         }
 
         const User = new Users({
@@ -39,10 +39,10 @@ router.post("/validate", (req, res) => {
         User.save()
         .catch(err => {
             console.log(err);
-            res.status(500).send(false);
+            res.send(false);
         })
 
-        res.status(200).send({selected: true, confirmationCode: code});
+        res.send({selected: true, confirmationCode: code});
         console.log("user created")
 
     })
