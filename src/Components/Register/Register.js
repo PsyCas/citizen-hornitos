@@ -109,8 +109,13 @@ class Register extends React.Component{
                         })
                     }
                 })
-                .catch((err) => {
+                .catch((err, response) => {
                     console.log(err);
+                    if(!response.data.selected){
+                        this.setState({
+                            isTakenUsername: true
+                        })
+                    }
                 })
         }
         else{
