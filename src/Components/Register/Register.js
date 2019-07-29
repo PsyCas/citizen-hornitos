@@ -125,7 +125,7 @@ class Register extends React.Component{
         return(
             <div className = "main-container-image-signup">
 
-                <NavBar/>
+                <NavBar isApp = "false"/>
                 <div className = "signup-image-container-card">
                     <div className = "signup-flex-wrapper">
                         <img src = {require("../../images/agave.jpg")} alt="" className = "agave-display-image"/> 
@@ -170,7 +170,7 @@ class Register extends React.Component{
         else{
             return(
                 <div className = "main-container-loadingImage">
-                    <NavBar/>
+                    <NavBar isApp = "false"/>
                     <div className = "loading-image-container">
                         <img alt = "" src={require("../../images/spinner-1.svg")}/> 
                     </div>

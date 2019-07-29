@@ -1,0 +1,209 @@
+/* css classes for navbar header */
+$height-icon: 2.5vh;
+$width-line: 2.1vw;
+$height-line: 0.2rem;
+$color: rgb(235,235,235);
+
+$transition-time: 0.4s;
+$rotation: 45deg;
+$translateY: ($height-icon / 2);
+$translateX: 0;
+
+//hamburger icon logic
+
+#hamburger-icon {
+    width:$width-line;
+    height:$height-icon;
+    position:relative;
+    // display:block;
+    margin: ($height-icon) 15rem;
+
+
+    
+    .line {
+      display:block;
+      background:$color;
+      width:$width-line;
+      height:$height-line;
+      position:absolute;
+      left:0;
+      border-radius:($height-line);
+      transition: all $transition-time;
+      -webkit-transition: all $transition-time;
+      -moz-transition: all $transition-time;
+      
+      &.line-1 {
+        top:0%;
+      }
+      &.line-2 {
+        top:50%;
+      }
+      &.line-3 {
+        top:100%;
+      }
+    }
+    &:hover, &:focus {
+       .line-1 {
+          transform: translateY($height-line / 2 * -1);
+          -webkit-transform: translateY($height-line / 2 * -1);
+          -moz-transform: translateY($height-line / 2 * -1);
+       }
+      .line-3 {
+          transform: translateY($height-line / 2);
+          -webkit-transform: translateY($height-line / 2);
+          -moz-transform: translateY($height-line / 2);
+      }  
+      cursor: pointer;
+    }
+    &.active {
+      .line-1 {
+        transform: translateY($translateY) translateX($translateX) rotate($rotation);
+        -webkit-transform: translateY($translateY) translateX($translateX) rotate($rotation);
+        -moz-transform: translateY($translateY) translateX($translateX) rotate($rotation);
+      }
+      .line-2 {
+        opacity:0;
+      }
+      .line-3 {
+        transform: translateY($translateY * -1) translateX($translateX) rotate($rotation * -1);
+        -webkit-transform: translateY($translateY * -1) translateX($translateX) rotate($rotation * -1);
+        -moz-transform: translateY($translateY * -1) translateX($translateX) rotate($rotation * -1);
+      }
+    }
+  }
+
+//   normal css classes
+
+.menu-bar-main{
+    margin: 2rem 0 0 5rem;
+    display: flex;
+    width: 95%;
+    align-items: center;
+
+}
+
+
+.logo-text-wrapper{
+    display: flex;
+    align-items: center; 
+}
+
+.logo-container{
+    /* border: 1px solid red; */
+    width:20%;
+}
+
+.hornitos-navbar-logo{
+    height: 100%;
+    width: 100%;
+}
+
+.logo-header-title{
+    font-size: 3.5vw;
+    padding-left: 2rem;
+}
+
+.smaller-one{
+    font-size: 2vw;
+}
+
+@media only screen and (max-width: 480px) {
+
+    .menu-bar-main{
+        margin: 2rem 0 0 1rem;
+        display: flex;
+        width: 95%;
+        align-items: center;
+        justify-content: space-between;
+        
+    }
+
+    .logo-header-title{
+        font-size: 1.5rem;
+        padding-left: 1rem;
+    }
+    
+    .logo-container{
+        /* border: 1px solid red; */
+        width:40%;
+    }
+
+    .logo-text-wrapper{
+        display: flex;
+        align-items: center; 
+    }
+
+    
+    $height-icon: 1vh;
+    $width-line: 5vw;
+    $height-line: 0.2rem;
+    $color: rgb(235,235,235);
+
+    $transition-time: 0.4s;
+    $rotation: 45deg;
+    $translateY: ($height-icon / 2);
+    $translateX: 0;
+
+    //hamburger icon logic
+
+    #hamburger-icon {
+        width:$width-line;
+        height:$height-icon;
+        position:relative;
+        // display:block;
+        margin: ($height-icon) 4rem;
+
+        
+        .line {
+        display:block;
+        background:$color;
+        width:$width-line;
+        height:$height-line;
+        position:absolute;
+        left:0;
+        border-radius:($height-line);
+        transition: all $transition-time;
+        -webkit-transition: all $transition-time;
+        -moz-transition: all $transition-time;
+        
+        &.line-1 {
+            top:0%;
+        }
+        &.line-2 {
+            top:50%;
+        }
+        &.line-3 {
+            top:100%;
+        }
+        }
+        &:hover, &:focus {
+        .line-1 {
+            transform: translateY($height-line / 2 * -1);
+            -webkit-transform: translateY($height-line / 2 * -1);
+            -moz-transform: translateY($height-line / 2 * -1);
+        }
+        .line-3 {
+            transform: translateY($height-line / 2);
+            -webkit-transform: translateY($height-line / 2);
+            -moz-transform: translateY($height-line / 2);
+        }  
+        cursor: pointer;
+        }
+        &.active {
+        .line-1 {
+            transform: translateY($translateY) translateX($translateX) rotate($rotation);
+            -webkit-transform: translateY($translateY) translateX($translateX) rotate($rotation);
+            -moz-transform: translateY($translateY) translateX($translateX) rotate($rotation);
+        }
+        .line-2 {
+            opacity:0;
+        }
+        .line-3 {
+            transform: translateY($translateY * -1) translateX($translateX) rotate($rotation * -1);
+            -webkit-transform: translateY($translateY * -1) translateX($translateX) rotate($rotation * -1);
+            -moz-transform: translateY($translateY * -1) translateX($translateX) rotate($rotation * -1);
+        }
+        }
+    }
+
+}
