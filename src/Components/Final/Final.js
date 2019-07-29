@@ -1,6 +1,9 @@
 import React from "react";
 import axios from "axios";
 
+import App from "../App/App";
+import "./final.css"
+
 class Final extends React.Component{
 
     constructor(props){
@@ -10,8 +13,7 @@ class Final extends React.Component{
             var: null,
             deviceId: localStorage.getItem("device-id"),
             points: 0,
-            isFetched: false
-
+            isFetched: false,
         }
 
         this.updatePoints = this.updatePoints.bind(this);
@@ -57,11 +59,20 @@ class Final extends React.Component{
 
     }
 
+    resetGame(){
+        this.setState({
+            isReset: true
+        })
+    }
+
     render(){
         return(
-            <div className = "flex-wrapper-citizenship">
-                {this.state.isFetched && <div className = "citizenship-question">{this.state.points}</div>}
-                <div className = "citizenship-question"> points mate.</div>
+            <div className = "scores-wrapper">
+                <div className = "final-score-container">
+                    {this.state.isFetched && <div className = "score-layout">Score: {this.state.points}</div>}
+                    <iframe src="https://giphy.com/embed/3o6ZtiOtxZPhbgjegw" width="300" height="150" frameBorder="0" className ="giphy-embed" allowFullScreen></iframe>
+                    <button className = "button-layout-score"><a className = "button-layout-score" href = "https://citizen-hornitos.herokuapp.com">Take another shot?</a></button>
+                </div>
             </div>
         )
     }
