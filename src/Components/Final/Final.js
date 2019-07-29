@@ -19,7 +19,13 @@ class Final extends React.Component{
     }
 
     componentDidMount(){
-        this.updatePoints();
+        
+        if(this.props.isCorrect) {
+            this.updatePoints();
+        }
+        else{
+            this.fetchPoints();
+        }
     }
 
     updatePoints(){
@@ -36,12 +42,12 @@ class Final extends React.Component{
         
     fetchPoints(){
 
-        // axios.get(`https://citizen-hornitos.herokuapp.com/users/points/${this.state.deviceId}`)
+        // axios.get(`http://localhost:3001/users/points/${this.state.deviceId}`)
         axios.get(`https://citizen-hornitos.herokuapp.com/users/points/${this.state.deviceId}`)
 
             .then((response) => {
                 this.setState({
-                    points: response.data,
+                    points: response.data.points,
                     isFetched: true
                 })
             })
@@ -53,10 +59,9 @@ class Final extends React.Component{
 
     render(){
         return(
-            <div>
-                <div>This is the final screen</div>
-                {this.state.isFetched && <div>{this.state.points}</div>}
-                <div>points mate.</div>
+            <div className = "flex-wrapper-citizenship">
+                {this.state.isFetched && <div className = "citizenship-question">{this.state.points}</div>}
+                <div className = "citizenship-question"> points mate.</div>
             </div>
         )
     }

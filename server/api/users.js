@@ -5,13 +5,15 @@ const Users = require("../models/users");
 const generator = require("generate-password");
 
 
-router.get("/points/:deviceId", (req,res) => {
+router.get("/points/:deviceId", (req , res) => {
 
     Users.findOne({deviceId: req.params.deviceId}, (err, match) => {
         if(err){
             res.status(404).send(false);
         }
-        res.status(200).send(match.points);
+        else{
+            res.status(200).send({points: match.points});
+        }
     })  
 })
 
@@ -51,6 +53,19 @@ router.get("/verify/:deviceId", (req,res) => {
         }
         res.status(200).send(true);
     })  
+})
+
+router.get("/reset/multiplier/:deviceId", (req, res) => {
+
+    Users.updateOne({deviceId: req.params.deviceId}, {$set: {multiplier: 1}})
+        .then(result => {
+            // console.log(result);
+            res.status(200).send(true);
+        })
+        .catch((err) => {
+            console.log(err);
+            res.status(404).send(false);
+        })
 })
 
 

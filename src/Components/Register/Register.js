@@ -46,6 +46,7 @@ class Register extends React.Component{
     }
 
     verifyLogin(){
+        // axios.get(`http://localhost:3001/users/verify/${this.state.deviceId}`)
         axios.get(`https://citizen-hornitos.herokuapp.com/users/verify/${this.state.deviceId}`)
             .then((response) => {
                 if(response.data === true){

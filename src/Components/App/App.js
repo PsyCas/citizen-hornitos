@@ -6,6 +6,12 @@ import styled, { keyframes } from "styled-components";
 
 import NavBar from "../NavBar/NavBar";
 import FinalScreen from "../Final/Final";
+import schedule from "node-schedule";
+
+// rules for making background fetches
+let resetRule = new schedule.RecurrenceRule();
+resetRule.dayOfWeek = new schedule.Range(0,6);
+resetRule.minute = 0;
 
 class App extends React.Component{
   
@@ -16,7 +22,7 @@ class App extends React.Component{
       question: null,
       answer: null,
       isFetchedQuestion: false,
-      decieId: localStorage.getItem("device-id"),
+      deviceId: localStorage.getItem("device-id"),
       displayLeaderBoard: false,
       points: 0,
       isSelectedOption: false,
@@ -28,6 +34,7 @@ class App extends React.Component{
 
     this.fetchQuestion = this.fetchQuestion.bind(this);
     this.leaderBoard = this.leaderBoard.bind(this);
+    this.resetMultiplier = this.resetMultiplier.bind(this);
     this.createAnswers = this.createAnswers.bind(this);
     this.checkAnswer = this.checkAnswer.bind(this);
     this.renderQuestion = this.renderQuestion.bind(this);
@@ -39,6 +46,28 @@ class App extends React.Component{
 
   componentDidMount(){
     this.fetchQuestion();
+    localStorage.setItem("time", Date.now());
+
+    schedule.scheduleJob(resetRule, () => {
+      this.resetMultiplier();
+    });
+
+    if(Date.now() - parseInt(localStorage.getItem("time")) >= 60*60*1000){
+      this.resetMultiplier();
+    }
+  }
+
+  componentWillUnmount(){
+    clearInterval(this.interval);
+  }
+
+  resetMultiplier(){
+    axios.get(`https://citizen-hornitos.herokuapp.com/users/reset/multiplier/${this.state.deviceId}`)
+    // axios.get(`http://localhost:3001/users/reset/multiplier/${this.state.deviceId}`)
+      .then((response) => {
+        console.log(response.data)
+      })
+      .catch((err) => console.log(err));
   }
 
   fetchQuestion(){
@@ -120,8 +149,9 @@ class App extends React.Component{
     this.interval = setInterval(() => {
       this.setState({
         showFinalScreen: true
-      })
-    }, 3000)
+      });
+      clearInterval(this.interval);
+    }, 2000)
   }
 
   renderLeaderboard(){
@@ -193,7 +223,7 @@ class App extends React.Component{
           {this.state.displayLeaderBoard && this.renderLeaderboard()}
           <NavBar isActivated = {this.state.displayLeaderBoard} isApp = "true" isDisplayLeader = {this.leaderBoard}/>
           {this.state.isFetchedQuestion && !this.state.showFinalScreen && this.renderQuestion()}
-          {this.state.isFetchedQuestion && this.state.showFinalScreen && <FinalScreen/>}
+          {this.state.isFetchedQuestion && this.state.showFinalScreen && <FinalScreen isCorrect ={this.state.selectedOption.value}/>}
         </div>
     </div>
     );  
