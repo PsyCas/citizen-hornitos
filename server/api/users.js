@@ -107,8 +107,8 @@ router.post("/validate", (req, res) => {
             res.send(false);
         })
 
+        console.log("user created");
         res.send({selected: true, confirmationCode: code});
-        console.log("user created")
 
     })
 })
