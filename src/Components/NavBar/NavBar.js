@@ -44,7 +44,7 @@ class NavBar extends React.Component{
         if(this.props.isApp === "true"){
         
             return(
-                <div className = "menu-bar-main">
+                <div className = "menu-bar-main with-menu">
                     <div className = "logo-text-wrapper">
                         <div className= "logo-container"> 
                             <img    
