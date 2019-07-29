@@ -5,6 +5,7 @@ import {fadeIn, slideInRight} from "react-animations";
 import styled, { keyframes } from "styled-components";
 
 import NavBar from "../NavBar/NavBar";
+import FinalScreen from "../Final/Final";
 
 class App extends React.Component{
   
@@ -19,15 +20,18 @@ class App extends React.Component{
       displayLeaderBoard: false,
       points: 0,
       isSelectedOption: false,
-      selectedOption: null
+      selectedOption: null,
+      isConfirmed: false,
+      confirmationColor: null,
+      showFinalScreen: false
     }
 
     this.fetchQuestion = this.fetchQuestion.bind(this);
-    this.fetchPoints = this.fetchPoints.bind(this);
     this.leaderBoard = this.leaderBoard.bind(this);
     this.createAnswers = this.createAnswers.bind(this);
     this.checkAnswer = this.checkAnswer.bind(this);
     this.renderQuestion = this.renderQuestion.bind(this);
+    this.submitAnswer = this.submitAnswer.bind(this);
 
     //renderFunction
     this.renderLeaderboard = this.renderLeaderboard.bind(this);
@@ -49,7 +53,6 @@ class App extends React.Component{
           })
 
           this.createAnswers();
-          this.fetchPoints();
         }
         else{
           console.log("Server Error")
@@ -61,21 +64,6 @@ class App extends React.Component{
       })
   }
 
-  fetchPoints(){
-
-    axios.get(`https://citizen-hornitos.herokuapp.com/questions/${this.state.deviceId}`)
-    // axios.get(`http://localhost:3001/users/points/${this.state.deviceId}`)
-
-        .then((response) => {
-          this.setState({
-            points: response.data
-          })
-        })
-        .catch(err =>{
-          console.log(err);
-        })
-
-  }
 
   createAnswers(){
 
@@ -108,13 +96,32 @@ class App extends React.Component{
 
   checkAnswer(option){
 
-    console.log(option.value);
     this.setState({
       selectedOption: option,
       isSelectedOption: true
     })
+  }
 
+  submitAnswer(){
 
+    if(this.state.selectedOption.value){
+      this.setState({
+        isConfirmed: true,
+        confirmationColor: "#00ff00",
+      })
+    }
+    else if(!this.state.selectedOption.value){
+      this.setState({
+        isConfirmed: true,
+        confirmationColor: "#ff0000",
+      })
+    }
+
+    this.interval = setInterval(() => {
+      this.setState({
+        showFinalScreen: true
+      })
+    }, 3000)
   }
 
   renderLeaderboard(){
@@ -148,15 +155,28 @@ class App extends React.Component{
   }
 
   renderQuestion(){
+
+    let buttonBackground = {
+      background: `${this.state.confirmationColor}`
+    }
+
     return(
       <div className = "flex-wrapper-citizenship">
         <div className = "citizenship-question-container">
             <div className = "citizenship-question-category">{this.state.question.questionTopic}</div>
             <div className = "citizenship-question">{this.state.question.questionIndex}. {this.state.question.question}</div>
             <div className = "citizenship-question-options">{this.state.answer.map((option, key) => {
-                return(
-                  <button className ="answer-button-layout" key={key} onClick = {() => this.checkAnswer(option)}>{option.label}</button>
-                )
+                
+                if (this.state.isConfirmed && option.label === this.state.selectedOption.label){
+                  return(
+                    <button style = {buttonBackground} className = "answer-button-layout animated-button" key={key} onClick = {() => this.checkAnswer(option)}>{option.label}</button>
+                  ) 
+                }
+                else{
+                  return(
+                      <button className ="answer-button-layout" key={key} onClick = {() => this.checkAnswer(option)}>{option.label}</button>
+                  )
+                }
             })}</div>
             {this.state.isSelectedOption && <button className = "submit-button-layout-citizenship" onClick = {this.submitAnswer}>Submit Answer</button>}
         </div>
@@ -172,7 +192,8 @@ class App extends React.Component{
         <div className = "App-content">
           {this.state.displayLeaderBoard && this.renderLeaderboard()}
           <NavBar isActivated = {this.state.displayLeaderBoard} isApp = "true" isDisplayLeader = {this.leaderBoard}/>
-          {this.state.isFetchedQuestion && this.renderQuestion()}
+          {this.state.isFetchedQuestion && !this.state.showFinalScreen && this.renderQuestion()}
+          {this.state.isFetchedQuestion && this.state.showFinalScreen && <FinalScreen/>}
         </div>
     </div>
     );  

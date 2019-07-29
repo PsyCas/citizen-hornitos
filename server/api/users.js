@@ -15,6 +15,34 @@ router.get("/points/:deviceId", (req,res) => {
     })  
 })
 
+
+router.get("/update/points/:deviceId", (req, res) => {
+    
+    let currentMultiplier = 0;
+    let currentPoints = 0;
+
+    Users.findOne({deviceId: req.params.deviceId}, (err,match) => {
+        if(err){
+            res.status(404).send(false);            
+        }
+
+        currentMultiplier = match.multiplier;
+        currentPoints = match.points;
+
+        let newPoints = (currentPoints + 1 * currentMultiplier).toFixed(2);
+        let newMultiplier = currentMultiplier * 0.85;
+
+        Users.updateOne({deviceId: req.params.deviceId}, { $set: { points: newPoints, multiplier: newMultiplier }})
+            .then((result) => {
+                console.log(result);
+                res.status(200).send(true);
+            })
+            .catch((err) => {
+                console.log(err);
+            })
+    })
+})
+
 router.get("/verify/:deviceId", (req,res) => {
 
     Users.findOne({deviceId: req.params.deviceId}, (err, match) => {
@@ -45,7 +73,8 @@ router.post("/validate", (req, res) => {
             email: req.body.email,
             deviceId: code,
             isVerified: false,
-            points: 0
+            points: 0,
+            multiplier: 1,
         })
         User.save()
         .catch(err => {
@@ -58,5 +87,7 @@ router.post("/validate", (req, res) => {
 
     })
 })
+
+
 
 module.exports = router;
