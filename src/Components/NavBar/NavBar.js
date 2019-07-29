@@ -10,10 +10,18 @@ class NavBar extends React.Component{
         super(props);
 
         this.state = {
-            isActiveButton: true
+            isActiveButton: false
         }
 
         this.toggleClickMenu = this.toggleClickMenu.bind(this);
+        this.toggleClickErrorHandler = this.toggleClickErrorHandler.bind(this);
+        
+    }
+
+    componentDidUpdate(){
+        if(this.props.isActivated != this.state.isActiveButton){
+            this.toggleClickErrorHandler();
+        }
     }
 
     toggleClickMenu(){
@@ -23,6 +31,12 @@ class NavBar extends React.Component{
         })
 
         this.props.isDisplayLeader();
+    }
+
+    toggleClickErrorHandler(){
+        this.setState({
+            isActiveButton: this.props.isActivated
+        })
     }
 
     render(){
@@ -40,7 +54,7 @@ class NavBar extends React.Component{
                         </div>
                         <div className = "logo-header-title smaller-one" >Citizen Hornitos</div>
                     </div>
-                    <a id="hamburger-icon" className = {!this.state.isActiveButton? "active": "inactive" } title="Menu" onClick = {this.toggleClickMenu}>
+                    <a id="hamburger-icon" className = {this.state.isActiveButton? "active": "inactive" } title="Menu" onClick = {this.toggleClickMenu}>
                         <span className ="line line-1"></span>
                         <span className ="line line-2"></span>
                         <span className ="line line-3"></span>

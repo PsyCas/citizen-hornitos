@@ -81,7 +81,7 @@ class App extends React.Component{
             <br/>
             <br/>
             <br/>
-            this is the content
+            this is content
           </div>
         </Slide>
       </div>
@@ -90,10 +90,12 @@ class App extends React.Component{
 
 
   render(){
+
+    console.log("Display leaderboard", this.state.displayLeaderBoard);
     return (
       <div className="App">
         {this.state.displayLeaderBoard && this.renderLeaderboard()}
-        <NavBar isApp = "true" isDisplayLeader = {this.leaderBoard}/>
+        <NavBar isActivated = {this.state.displayLeaderBoard} isApp = "true" isDisplayLeader = {this.leaderBoard}/>
           {this.state.isFetchedQuestion && 
             <div>
               <div>{this.state.question.questionTopic}</div>
