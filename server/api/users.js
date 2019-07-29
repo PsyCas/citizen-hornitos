@@ -87,10 +87,10 @@ router.post("/validate", (req, res) => {
     })
 
 
-    Users.findOne({username: req.body.username}, (err, match) => {
-        if(match){
-            res.send({message: "Username already taken.", selected: false})
-        }
+    // Users.findOne({username: req.body.username}, (err, match) => {
+    //     if(match){
+    //         res.send({message: "Username already taken.", selected: false})
+    //     }
 
         const User = new Users({
             _id : new mongoose.Types.ObjectId(),
@@ -110,7 +110,7 @@ router.post("/validate", (req, res) => {
         console.log("user created");
         res.send({selected: true, confirmationCode: code});
 
-    })
+    // })
 })
 
 
