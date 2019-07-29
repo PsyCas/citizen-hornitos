@@ -12,15 +12,12 @@ router.get("/:deviceId", (req, res) => {
         }
         else{
             let number = parseInt(Math.random() * Math.floor(10)) + 1;
-            console.log(number);
 
             Questions.findOne({questionIndex: number}, (err, match) => {
                 if(err){
                     res.status(404).send(false);
                 }
                 else{
-
-                    // console.log(parseInt(Math.random() * Math.floor(match.answers.length)));
 
                     let someVal = {
                         questionIndex: match.questionIndex,
@@ -29,9 +26,6 @@ router.get("/:deviceId", (req, res) => {
                         answer: match.answers[parseInt(Math.random() * Math.floor(match.answers.length))],
                         options: match.options
                     }
-
-                    console.log(someVal);
-
 
                     res.status(200).send(someVal);
                 }

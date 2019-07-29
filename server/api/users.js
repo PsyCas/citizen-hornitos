@@ -48,7 +48,6 @@ router.get("/update/points/:deviceId", (req, res) => {
 
         Users.updateOne({deviceId: req.params.deviceId}, { $set: { points: newPoints, multiplier: newMultiplier }})
             .then((result) => {
-                console.log(result);
                 res.status(200).send(true);
             })
             .catch((err) => {
@@ -71,7 +70,6 @@ router.get("/reset/multiplier/:deviceId", (req, res) => {
 
     Users.updateOne({deviceId: req.params.deviceId}, {$set: {multiplier: 1}})
         .then(result => {
-            // console.log(result);
             res.status(200).send(true);
         })
         .catch((err) => {

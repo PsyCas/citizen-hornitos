@@ -55,7 +55,6 @@ class App extends React.Component{
     this.fetchLeaderBoard();
 
     this.leaderboardInterval = setInterval(() => {
-      console.log("just fetched");
       this.fetchLeaderBoard();
     }, 10000);
 
@@ -78,7 +77,6 @@ class App extends React.Component{
   resetMultiplier(){
     axios.get(`https://citizen-hornitos.herokuapp.com/users/reset/multiplier/${this.state.deviceId}`)
       .then((response) => {
-        console.log(response.data)
       })
       .catch((err) => console.log(err));
   }

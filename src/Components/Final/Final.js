@@ -33,7 +33,6 @@ class Final extends React.Component{
     updatePoints(){
         axios.get(`https://citizen-hornitos.herokuapp.com/users/update/points/${this.state.deviceId}`)
             .then((response) => {
-                console.log(response.data);
                 this.fetchPoints();
             })
             .catch((err) => {
