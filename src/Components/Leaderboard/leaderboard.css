@@ -1,0 +1,49 @@
+.leaderboard-parent-main{
+    height: 87%;
+    width: 98%;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.lead-parent-header{
+
+    font-size: 2rem;
+    height: 3rem;
+    text-align: center;
+}
+
+.score-card-parent{
+    margin-top: 1rem;
+    padding: 0 0.5rem;
+
+    overflow-y: auto;
+}
+
+.score-card-layout{
+
+    display: flex;
+    flex-direction: column; 
+
+    color: #000;
+    border-radius: 5px;
+    background: #e2e2e2;
+    margin: 0.2rem 0;
+    padding: 0.5rem;
+    /* border: 1px solid yellow; */
+}
+
+.first-place{
+    background: #D4AF37;
+}
+
+.second-place{
+    background: #C0C0C0;
+}
+.third-place{
+    background: #CD7F32;
+}
+
+.player-name-layout{
+    font-size: 1.2rem;
+}

@@ -5,6 +5,18 @@ const Users = require("../models/users");
 const generator = require("generate-password");
 
 
+router.get("/leaderboard", (req, res) => {
+
+    Users.find({}).limit(20).sort({points:-1}).then((result)=>{
+
+        let finalOp = result.map((resultVal) => {
+            return({username: resultVal.username, score: resultVal.points});
+        })
+
+        res.send(finalOp);
+    })
+})
+
 router.get("/points/:deviceId", (req , res) => {
 
     Users.findOne({deviceId: req.params.deviceId}, (err, match) => {

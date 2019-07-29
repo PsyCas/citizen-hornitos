@@ -6,7 +6,10 @@ import styled, { keyframes } from "styled-components";
 
 import NavBar from "../NavBar/NavBar";
 import FinalScreen from "../Final/Final";
+import Leaderboard from "../Leaderboard/leaderboard";
+
 import schedule from "node-schedule";
+
 
 // rules for making background fetches
 let resetRule = new schedule.RecurrenceRule();
@@ -29,10 +32,13 @@ class App extends React.Component{
       selectedOption: null,
       isConfirmed: false,
       confirmationColor: null,
-      showFinalScreen: false
+      showFinalScreen: false,
+      leaderboardData: null,
+      isFirstLeaderboardFetch: false,
     }
 
     this.fetchQuestion = this.fetchQuestion.bind(this);
+    this.fetchLeaderBoard = this.fetchLeaderBoard.bind(this);
     this.leaderBoard = this.leaderBoard.bind(this);
     this.resetMultiplier = this.resetMultiplier.bind(this);
     this.createAnswers = this.createAnswers.bind(this);
@@ -46,6 +52,13 @@ class App extends React.Component{
 
   componentDidMount(){
     this.fetchQuestion();
+    this.fetchLeaderBoard();
+
+    this.leaderboardInterval = setInterval(() => {
+      console.log("just fetched");
+      this.fetchLeaderBoard();
+    }, 10000);
+
     localStorage.setItem("time", Date.now());
 
     schedule.scheduleJob(resetRule, () => {
@@ -59,6 +72,7 @@ class App extends React.Component{
 
   componentWillUnmount(){
     clearInterval(this.interval);
+    clearInterval(this.leaderboardInterval);
   }
 
   resetMultiplier(){
@@ -68,6 +82,20 @@ class App extends React.Component{
         console.log(response.data)
       })
       .catch((err) => console.log(err));
+  }
+
+  fetchLeaderBoard(){
+    // axios.get("https://citizen-hornitos.herokuapp.com/users/leaderboard")
+    axios.get("http://localhost:3001/users/leaderboard")
+      .then(response => {
+        this.setState({
+          leaderboardData: response.data,
+          isFirstLeaderboardFetch: true
+        })
+      })
+      .catch(err => {
+        console.log(err);
+      })
   }
 
   fetchQuestion(){
@@ -119,7 +147,8 @@ class App extends React.Component{
   leaderBoard(){
 
     this.setState({
-      displayLeaderBoard: !this.state.displayLeaderBoard
+      displayLeaderBoard: !this.state.displayLeaderBoard,
+      isFirstLeaderboardFetch: false
     })
   }
 
@@ -169,7 +198,7 @@ class App extends React.Component{
     return(
       <div className = "sliding-leaderboard-menu">
         <button className = "left-side-button" onClick = {this.leaderBoard} ></button>
-
+        {!this.state.isFirstLeaderboardFetch &&
         <Slide className = "pull-out-bar-right">
           <div className = "leaderboard-content">
             <br/>
@@ -177,9 +206,22 @@ class App extends React.Component{
             <br/>
             <br/>
             <br/>
-            this is content
+              <Leaderboard data = {this.state.leaderboardData}/>
           </div>
-        </Slide>
+        </Slide>}
+        
+        {this.state.isFirstLeaderboardFetch &&
+        <div className = "pull-out-bar-right">
+          <div className = "leaderboard-content">
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+              <Leaderboard data = {this.state.leaderboardData}/>
+          </div>
+        </div>}
+
       </div>
     );
   }
