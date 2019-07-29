@@ -41,7 +41,7 @@ class NavBar extends React.Component{
 
     render(){
 
-        if(this.props.isApp){
+        if(this.props.isApp === "true"){
         
             return(
                 <div className = "menu-bar-main">

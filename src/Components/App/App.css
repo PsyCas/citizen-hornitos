@@ -1,3 +1,9 @@
+.App{
+    display: flex;
+    flex-direction: column;
+}
+
+
 .sliding-leaderboard-menu{
 
     display: flex;
@@ -20,10 +26,288 @@
     flex: 3;
 }
 
+
 .leaderboard-content{
     /* border: 1px solid red; */
     height: 100%;
     width: 100%;
     display: flex;
     flex-direction: column;
+}
+
+/* card menu style */
+.flex-wrapper-citizenship{
+    /* border: 1px solid white; */
+
+    display: flex;
+
+    height: 80vh;
+    width: 99vw;
+
+    margin-top: 3rem;
+    justify-content: center; 
+}
+
+.citizenship-question-container{
+    /* border: 1px solid red; */
+
+    height: 80%;
+    width: 50%;
+
+    color: #000;
+    border-radius: 10px;
+
+    background: #e2e2e2;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    padding: 2rem;
+}
+
+.citizenship-question-category{
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+}
+
+.citizenship-question{
+    font-size: 2rem;
+}
+
+.citizenship-question-options{
+    display: flex;
+    flex-direction: column;
+    /* border: 1px solid red; */
+    
+    justify-content: center;
+    
+    width: 75%;
+    height: 100%;
+}
+
+.answer-button-layout{
+    background: #00995B;
+    border: none;
+    border-radius: 5px;
+    height: 5rem;
+    margin: 1rem 0;
+    color: white;
+    font-family: "knockout";
+    font-size: 2rem;
+    outline: none;
+}
+
+.answer-button-layout:hover{
+    background: rgb(0, 73, 44);
+    cursor: pointer;
+}
+
+.answer-button-layout:focus{
+    background: rgb(0, 73, 44);
+}
+
+.answer-button-layout:active{
+    background: rgb(0, 73, 44);
+}
+
+.submit-button-layout-citizenship{
+    background: #00995B;
+    outline: none;
+    border: none;
+    height: 5rem;
+    width: 10rem;
+    border-radius: 10px;
+
+    align-self: flex-end;
+    color: white;
+    font-family: "knockout";
+    font-size: 1.5rem;
+}
+
+
+@media only screen and (max-width: 1336px) {
+
+    /* card menu style */
+    .flex-wrapper-citizenship{
+        /* border: 1px solid white; */
+
+        display: flex;
+
+        height: 80vh;
+        width: 99vw;
+
+        margin-top: 3rem;
+        justify-content: center; 
+    }
+
+    .citizenship-question-container{
+        /* border: 1px solid red; */
+
+        height: 80%;
+        width: 50%;
+
+        color: #000;
+        border-radius: 10px;
+
+        background: #e2e2e2;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        padding: 1.5rem;
+    }
+
+    .citizenship-question-category{
+        font-size: 2rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .citizenship-question{
+        font-size: 1.5rem;
+    }
+
+    .citizenship-question-options{
+        display: flex;
+        flex-direction: column;
+        /* border: 1px solid red; */
+        
+        justify-content: center;
+        
+        width: 75%;
+        height: 100%;
+    }
+
+    .answer-button-layout{
+        background: #00995B;
+        border: none;
+        border-radius: 5px;
+        height: 3rem;
+        margin: 0.5rem 0;
+        color: white;
+        font-family: "knockout";
+        font-size: 1.2rem;
+        outline: none;
+    }
+
+    .answer-button-layout:hover{
+        background: rgb(0, 73, 44);
+        cursor: pointer;
+    }
+
+    .answer-button-layout:focus{
+        background: rgb(0, 73, 44);
+    }
+
+    .answer-button-layout:active{
+        background: rgb(0, 73, 44);
+    }
+
+    .submit-button-layout-citizenship{
+        background: #00995B;
+        outline: none;
+        border: none;
+        height: 4rem;
+        width: 7rem;
+        border-radius: 10px;
+
+        align-self: flex-end;
+        color: white;
+        font-family: "knockout";
+        font-size: 1.1rem;
+    }
+}
+
+
+@media only screen and (max-width: 600px) {
+    /* card menu style */
+
+    .flex-wrapper-citizenship{
+        /* border: 1px solid white; */
+
+        display: flex;
+
+        height: 80vh;
+        width: 99vw;
+
+        margin-top: 5rem;
+        justify-content: center; 
+    }
+
+    .citizenship-question-container{
+        /* border: 1px solid red; */
+
+        height: 70%;
+        width: 70%;
+
+        color: #000;
+        border-radius: 10px;
+
+        background: #e2e2e2;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        
+        padding: 1.5rem;
+    }
+
+    .citizenship-question-category{
+        font-size: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .citizenship-question{
+        font-size: 1.2rem;
+    }
+
+    .citizenship-question-options{
+        display: flex;
+        flex-direction: column;
+        /* border: 1px solid red; */
+        
+        justify-content: center;
+        
+        width: 75%;
+        height: 100%;
+    }
+
+    .answer-button-layout{
+        background: #00995B;
+        border: none;
+        border-radius: 5px;
+        height: 3rem;
+        margin: 0.5rem 0;
+        color: white;
+        font-family: "knockout";
+        font-size: 1.2rem;
+        outline: none;
+    }
+
+    .answer-button-layout:hover{
+        background: rgb(0, 73, 44);
+    }
+
+    .answer-button-layout:focus{
+        background: rgb(0, 73, 44);
+    }
+
+    .answer-button-layout:active{
+        background: rgb(0, 73, 44);
+    }
+
+    .submit-button-layout-citizenship{
+        background: #00995B;
+        outline: none;
+        border: none;
+        height: 4rem;
+        width: 7rem;
+        border-radius: 10px;
+
+        align-self: flex-end;
+        color: white;
+        font-family: "knockout";
+        font-size: 1.1rem;
+    }
 }

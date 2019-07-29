@@ -17,7 +17,9 @@ class App extends React.Component{
       isFetchedQuestion: false,
       decieId: localStorage.getItem("device-id"),
       displayLeaderBoard: false,
-      points: 0
+      points: 0,
+      isSelectedOption: false,
+      selectedOption: null
     }
 
     this.fetchQuestion = this.fetchQuestion.bind(this);
@@ -25,6 +27,7 @@ class App extends React.Component{
     this.leaderBoard = this.leaderBoard.bind(this);
     this.createAnswers = this.createAnswers.bind(this);
     this.checkAnswer = this.checkAnswer.bind(this);
+    this.renderQuestion = this.renderQuestion.bind(this);
 
     //renderFunction
     this.renderLeaderboard = this.renderLeaderboard.bind(this);
@@ -106,6 +109,11 @@ class App extends React.Component{
   checkAnswer(option){
 
     console.log(option.value);
+    this.setState({
+      selectedOption: option,
+      isSelectedOption: true
+    })
+
 
   }
 
@@ -139,23 +147,33 @@ class App extends React.Component{
     );
   }
 
+  renderQuestion(){
+    return(
+      <div className = "flex-wrapper-citizenship">
+        <div className = "citizenship-question-container">
+            <div className = "citizenship-question-category">{this.state.question.questionTopic}</div>
+            <div className = "citizenship-question">{this.state.question.questionIndex}. {this.state.question.question}</div>
+            <div className = "citizenship-question-options">{this.state.answer.map((option, key) => {
+                return(
+                  <button className ="answer-button-layout" key={key} onClick = {() => this.checkAnswer(option)}>{option.label}</button>
+                )
+            })}</div>
+            {this.state.isSelectedOption && <button className = "submit-button-layout-citizenship" onClick = {this.submitAnswer}>Submit Answer</button>}
+        </div>
+      </div>
+    )
+  }
+
 
   render(){
 
     return (
       <div className="App">
-        {this.state.displayLeaderBoard && this.renderLeaderboard()}
-        <NavBar isActivated = {this.state.displayLeaderBoard} isApp = "true" isDisplayLeader = {this.leaderBoard}/>
-          {this.state.isFetchedQuestion && 
-            <div>
-              <div>{this.state.question.questionTopic}</div>
-              <div>{this.state.question.questionIndex}. {this.state.question.question}</div>
-              <div>{this.state.answer.map((option, key) => {
-                  return(
-                    <button className ="answer-button-layout" key={key} onClick = {() => this.checkAnswer(option)}>{option.label}</button>
-                  )
-              })}</div>
-          </div>}
+        <div className = "App-content">
+          {this.state.displayLeaderBoard && this.renderLeaderboard()}
+          <NavBar isActivated = {this.state.displayLeaderBoard} isApp = "true" isDisplayLeader = {this.leaderBoard}/>
+          {this.state.isFetchedQuestion && this.renderQuestion()}
+        </div>
     </div>
     );  
   }
