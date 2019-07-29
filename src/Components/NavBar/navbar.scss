@@ -112,15 +112,14 @@ $translateX: 0;
     .menu-bar-main{
         margin: 2rem 0 0 1rem;
         display: flex;
-        width: 95%;
+        width: 70%;
         align-items: center;
-        justify-content: space-between;
+        justify-content: space-evenly;
         
     }
 
     .logo-header-title{
         font-size: 1.5rem;
-        padding-left: 1rem;
     }
     
     .logo-container{
