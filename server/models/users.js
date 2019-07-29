@@ -6,7 +6,8 @@ let userSchema = new Schema({
     username: String,
     email: String,
     deviceId: String,
-    isVerified: Boolean
+    isVerified: Boolean,
+    points: {type: Number, default: 0}
 });
 
 module.exports = mongoose.model("users", userSchema);

@@ -5,6 +5,16 @@ const Users = require("../models/users");
 const generator = require("generate-password");
 
 
+router.get("/points/:deviceId", (req,res) => {
+
+    Users.findOne({deviceId: req.params.deviceId}, (err, match) => {
+        if(err){
+            res.status(404).send(false);
+        }
+        res.status(200).send(match.points);
+    })  
+})
+
 router.get("/verify/:deviceId", (req,res) => {
 
     Users.findOne({deviceId: req.params.deviceId}, (err, match) => {
@@ -34,7 +44,8 @@ router.post("/validate", (req, res) => {
             username: req.body.username,
             email: req.body.email,
             deviceId: code,
-            isVerified: false
+            isVerified: false,
+            points: 0
         })
         User.save()
         .catch(err => {
