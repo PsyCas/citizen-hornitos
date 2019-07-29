@@ -31,7 +31,6 @@ class Final extends React.Component{
     }
 
     updatePoints(){
-        // axios.get(`http://localhost:3001/users/update/points/${this.state.deviceId}`)
         axios.get(`https://citizen-hornitos.herokuapp.com/users/update/points/${this.state.deviceId}`)
             .then((response) => {
                 console.log(response.data);
@@ -44,7 +43,6 @@ class Final extends React.Component{
         
     fetchPoints(){
 
-        // axios.get(`http://localhost:3001/users/points/${this.state.deviceId}`)
         axios.get(`https://citizen-hornitos.herokuapp.com/users/points/${this.state.deviceId}`)
 
             .then((response) => {

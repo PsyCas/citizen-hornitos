@@ -77,7 +77,6 @@ class App extends React.Component{
 
   resetMultiplier(){
     axios.get(`https://citizen-hornitos.herokuapp.com/users/reset/multiplier/${this.state.deviceId}`)
-    // axios.get(`http://localhost:3001/users/reset/multiplier/${this.state.deviceId}`)
       .then((response) => {
         console.log(response.data)
       })
@@ -85,8 +84,7 @@ class App extends React.Component{
   }
 
   fetchLeaderBoard(){
-    // axios.get("https://citizen-hornitos.herokuapp.com/users/leaderboard")
-    axios.get("http://localhost:3001/users/leaderboard")
+    axios.get("https://citizen-hornitos.herokuapp.com/users/leaderboard")
       .then(response => {
         this.setState({
           leaderboardData: response.data,
@@ -101,8 +99,6 @@ class App extends React.Component{
   fetchQuestion(){
 
     axios.get(`https://citizen-hornitos.herokuapp.com/questions/${this.state.deviceId}`)
-    // axios.get(`http://localhost:3001/questions/${this.state.deviceId}`)
-
       .then((response) => {
         if(response.data !== false){
           this.setState({
